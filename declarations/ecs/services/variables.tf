@@ -11,10 +11,19 @@ variable "ecs_services" {
             capacity_provider_name = string
         })
         alb = object({
-            vpc_id = string
             listener_https_arn = string
             listener_rule_priority = number
             dns = string
+        })
+        target_group = object({
+            vpc_id = string
+            health_check_matcher = optional(string, "200,301")
+            health_check_path = optional(string, "/")
+            health_check_interval = optional(number, 10)
+            health_check_protocol = optional(string, "HTTP")
+            health_check_timeout = optional(number, 5)
+            health_check_healthy_threshold = optional(number, 3)
+            health_check_unhealthy_threshold = optional(number, 3)
         })
         route53 = object({
             hostedzone_id = string
@@ -34,3 +43,13 @@ variable "ecs_services" {
     }))
     
 }
+
+  # health_check {
+  #   matcher             = "200,301"
+  #   path                = "/"
+  #   interval            = 10
+  #   protocol            = "HTTP"
+  #   timeout             = 5
+  #   healthy_threshold   = 3
+  #   unhealthy_threshold = 3
+  # }

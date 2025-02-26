@@ -4,7 +4,7 @@ locals {
   region     = "us-east-1"
   infrastructure_suffix = format("%s-%s", local.project_env, local.project_name)
   azs            = ["${local.region}a", "${local.region}b", "${local.region}c"]
-  domain = "walterwrites.ai"
+  domain = "${terraform.workspace}.walterwrites.ai"
 }
 
 locals {

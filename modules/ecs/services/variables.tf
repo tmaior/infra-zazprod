@@ -12,10 +12,22 @@ variable "service" {
 
 variable "alb" {
     type = object({
-        vpc_id = string
         listener_https_arn = string
         listener_rule_priority = number
         dns = string
+    })
+}
+
+variable "target_group" {
+    type = object({
+        vpc_id = string
+        health_check_matcher = string
+        health_check_path = string
+        health_check_interval = number
+        health_check_protocol = string
+        health_check_timeout = number
+        health_check_healthy_threshold = number
+        health_check_unhealthy_threshold = number
     })
 }
 
