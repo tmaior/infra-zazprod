@@ -56,7 +56,6 @@ resource "aws_iam_role_policy_attachment" "service_execution_role_attach" {
 
 resource "aws_ecs_task_definition" "task_definition" {
   family = var.service.name
-  task_role_arn = aws_iam_role.service_execution_role.arn
   execution_role_arn = aws_iam_role.service_execution_role.arn
   network_mode = "bridge"
   requires_compatibilities = ["EC2"]
