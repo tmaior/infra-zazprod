@@ -1,0 +1,21 @@
+module "rds_cluster" {
+  for_each = var.rds_cluster
+  source               = "../../../modules/rds/cluster"
+  vpc_security_group_ids = each.value.rds_cluster.vpc_security_group_ids
+  subnet_ids             = each.value.rds_cluster.subnet_ids
+  cluster_identifier     = each.value.rds_cluster.cluster_identifier
+  engine                 = each.value.rds_cluster.engine
+  engine_version         = each.value.rds_cluster.engine_version
+  master_username        = each.value.rds_cluster.master_username
+  preferred_backup_window = each.value.rds_cluster.preferred_backup_window
+  allocated_storage =      each.value.rds_cluster.allocated_storage
+  db_cluster_instance_class =  each.value.rds_cluster.db_cluster_instance_class
+  deletion_protection     = each.value.rds_cluster.deletion_protection
+  enable_autoscaling     = each.value.rds_cluster.enable_autoscaling
+  number_of_readers       = each.value.rds_cluster.number_of_readers
+  port                    = each.value.rds_cluster.port
+  kms = each.value.kms
+  rds_writer = each.value.rds_writer
+  rds_readers = each.value.rds_readers
+  autoscaling = each.value.autoscaling
+}
