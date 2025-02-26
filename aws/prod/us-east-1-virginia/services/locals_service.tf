@@ -22,7 +22,7 @@ locals {
             }
             task_definition = {
                 secrets = local.BACKEND_SECRETS
-                repository_url = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${local.region}.amazonaws.com/${local.SERVICES_NAMES.BACKEND}/${local.project_env}/${local.project_name}:latest-nginx"
+                repository_url = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${local.region}.amazonaws.com/${local.SERVICES_NAMES.BACKEND}/${local.project_env}/${local.project_name}:latest"
                 container_name = format("%s-%s", local.SERVICES_NAMES.BACKEND ,local.infrastructure_suffix)
                 container_port = 8000
                 container_cpu = 1024
