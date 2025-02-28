@@ -81,6 +81,10 @@ resource "aws_ecs_task_definition" "task_definition" {
           "awslogs-region"        = "${var.service.region}"
           "awslogs-stream-prefix" = "/ecs"
         }
+    #  # 🔥 Health Check 🔥
+    #   healthCheck = {
+    #     command     = ["CMD-SHELL", "curl -f http://localhost:${var.task_definition.container_port}/ || exit 1"]
+    #   }
       }
     }
   ])
